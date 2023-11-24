@@ -48,6 +48,7 @@ class LogRegDemo:
         self.ax_sigma_slider = self.fig.add_axes([0.025, 0.1, 0.025, 0.8])
         self.sigma_slider = plt.Slider(ax=self.ax_sigma_slider, label=r"$\sigma$", valmin=-10, valmax=10,
                                        valinit=np.log2(self.sigma), orientation="vertical")
+        self.sigma_slider.valtext.set_text(f"{self.sigma:.3f}")
         self.sigma_slider.on_changed(self.on_slide_sigma)
         self.ax_n0_slider = self.fig.add_axes([0.075, 0.1, 0.025, 0.8])
         self.n0_slider = plt.Slider(ax=self.ax_n0_slider, label=r"n0", valmin=0, valmax=self.n[0],
