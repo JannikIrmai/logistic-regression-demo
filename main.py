@@ -24,7 +24,7 @@ class LogRegDemo:
         self.data = [np.linspace(0, 1-self.n[0], self.n[0]), np.linspace(0, self.n[1]-1, self.n[1])]
 
         self.sigma = 1
-        self.theta = np.linspace(-10, 10, 1001)
+        self.theta = np.linspace(-20, 20, 1001)
         self.x = np.linspace(-self.n[0], self.n[1], 1001)
 
         self.loss = compute_loss(self.data[0], self.data[1], self.theta)
