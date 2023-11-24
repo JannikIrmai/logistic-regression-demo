@@ -31,7 +31,9 @@ class LogRegDemo:
         self.regularizer = compute_regularizer(self.theta, self.sigma)
         self.objective = self.loss + self.regularizer
 
-        self.opt = self.theta[np.argmin(self.objective)]
+        idx = np.argmin(self.objective)
+        self.opt = self.theta[idx]
+        self.opt_value = self.objective[idx]
         self.prob = 1 / (1 + 2**(-self.opt*self.x))
 
         self.fig = plt.figure()
@@ -69,6 +71,7 @@ class LogRegDemo:
         self.loss_handle = self.ax_obj.plot(self.theta, self.loss, label="loss")[0]
         self.regularizer_handle = self.ax_obj.plot(self.theta, self.regularizer, label="regularizer")[0]
         self.objective_handle = self.ax_obj.plot(self.theta, self.objective, label="objective")[0]
+        self.opt_handle = self.ax_obj.scatter([self.opt], [self.opt_value], color="black")
         self.ax_obj.legend()
 
         self.selected = [None, 0]
@@ -119,9 +122,12 @@ class LogRegDemo:
         self.regularizer_handle.set(ydata=self.regularizer)
         self.objective_handle.set(ydata=self.objective)
 
-        self.opt = self.theta[np.argmin(self.objective)]
+        idx = np.argmin(self.objective)
+        self.opt = self.theta[idx]
+        self.opt_value = self.objective[idx]
         self.prob = 1 / (1 + 2 ** (-self.opt * self.x))
         self.prob_handle.set(ydata=self.prob)
+        self.opt_handle.set_offsets(np.c_[[self.opt], [self.opt_value]])
 
         self.fig.canvas.draw_idle()
 
